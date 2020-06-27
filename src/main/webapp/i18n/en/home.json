@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Welcome, Java Hipster!",
-    "subtitle": "This is your homepage",
+    "title": "Welcome to JHPetclinic",
+    "subtitle": "JHipster/Angular version of the Spring Petclinic app",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },

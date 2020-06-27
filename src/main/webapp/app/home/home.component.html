@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
+        <span class="pets img-fluid rounded"></span>
     </div>
 
     <div class="col-md-9">
-        <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
+        <h1 class="display-4" jhiTranslate="home.title">Welcome to JHPetclinic!</h1>
 
-        <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
+        <p class="lead" jhiTranslate="home.subtitle">JHipster/Angular version of the Spring Petclinic app</p>
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
@@ -40,5 +40,17 @@
         <p>
             <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">GitHub</a>!
         </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-7"></div>
+    <div class="col-md-2">
+        <span class="jhlogo img-fluid rounded"></span>
+    </div>
+    <div class="col-md-1">
+        <fa-icon icon="plus" size="3x"></fa-icon>
+    </div>
+    <div class="col-md-2">
+        <span class="spring-pivotal img-fluid rounded"></span>
     </div>
 </div>

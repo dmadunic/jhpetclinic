@@ -1,6 +1,9 @@
 # jhpetclinic
 
-This application was generated using JHipster 6.9.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.9.1](https://www.jhipster.tech/documentation-archive/v6.9.1).
+This is JHipster version of the legendary Spring Petclinic application.
+
+Master branch contians the final version of the jhpetclinic application while specific branches exists for the various
+development versions.
 
 ## Development
 
