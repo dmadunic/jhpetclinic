@@ -25,6 +25,21 @@ export class OwnerComponent implements OnInit, OnDestroy {
   ascending!: boolean;
   ngbPaginationPage = 1;
 
+  searchFieldOptions = [
+    { value: 'firstName', label: 'First name' },
+    { value: 'lastName', label: 'Last name' },
+    { value: 'address', label: 'Address' },
+    { value: 'city', label: 'City' },
+  ];
+
+  criteria = {
+    searchData: '',
+    searchField: 'firstName',
+  };
+
+  activeSearchData?: string;
+  activeSearchField?: string;
+
   constructor(
     protected ownerService: OwnerService,
     protected activatedRoute: ActivatedRoute,
@@ -35,17 +50,12 @@ export class OwnerComponent implements OnInit, OnDestroy {
 
   loadPage(page?: number, dontNavigate?: boolean): void {
     const pageToLoad: number = page || this.page || 1;
+    const req = this.constructRequest(pageToLoad);
 
-    this.ownerService
-      .query({
-        page: pageToLoad - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
-      .subscribe(
-        (res: HttpResponse<IOwner[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
-        () => this.onError()
-      );
+    this.ownerService.query(req).subscribe(
+      (res: HttpResponse<IOwner[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
+      () => this.onError()
+    );
   }
 
   ngOnInit(): void {
@@ -96,6 +106,14 @@ export class OwnerComponent implements OnInit, OnDestroy {
     return result;
   }
 
+  searchOwners(): void {
+    this.activeSearchData = this.criteria.searchData;
+    this.activeSearchField = this.criteria.searchField;
+    this.page = 1;
+    this.ngbPaginationPage = 1;
+    this.loadPage();
+  }
+
   protected onSuccess(data: IOwner[] | null, headers: HttpHeaders, page: number, navigate: boolean): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
@@ -114,5 +132,17 @@ export class OwnerComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  protected constructRequest(pageToLoad: number): any {
+    const req = {
+      page: pageToLoad - 1,
+      size: this.itemsPerPage,
+      sort: this.sort(),
+    };
+    if (this.activeSearchData) {
+      req[this.activeSearchField + '.contains'] = this.activeSearchData;
+    }
+    return req;
   }
 }

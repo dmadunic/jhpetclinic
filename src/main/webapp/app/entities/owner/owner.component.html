@@ -8,6 +8,19 @@
             Create a new Owner
             </span>
         </button>
+
+        <form #f="ngForm" class="form-inline float-right pr-3">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="searchData" class="sr-only">Search data</label>
+                <input type="text" class="form-control" id="searchData" name="searchData" [(ngModel)]="criteria.searchData" />
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <select class="form-control" id="searchField" name="searchField" [(ngModel)]="criteria.searchField" >
+                    <option [ngValue]="searchField.value" *ngFor="let searchField of searchFieldOptions">{{searchField.label}}</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-secondary mb-2" (click)="searchOwners()">Search</button>
+        </form>
     </h2>
 
     <jhi-alert-error></jhi-alert-error>
