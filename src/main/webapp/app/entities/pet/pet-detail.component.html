@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="pet">
+            <h2><span jhiTranslate="jhpetclinicApp.pet.detail.title">Pet</span> {{ pet.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhpetclinicApp.pet.name">Name</span></dt>
+                <dd>
+                    <span>{{ pet.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhpetclinicApp.pet.birthDate">Birth Date</span></dt>
+                <dd>
+                    <span>{{ pet.birthDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhpetclinicApp.pet.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="pet.typeId">
+                        <a [routerLink]="['/pet-type', pet.typeId, 'view']">{{ pet.typeName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jhpetclinicApp.pet.owner">Owner</span></dt>
+                <dd>
+                    <div *ngIf="pet.ownerId">
+                        <a [routerLink]="['/owner', pet.ownerId, 'view']">{{ pet.ownerLastName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/pet', pet.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

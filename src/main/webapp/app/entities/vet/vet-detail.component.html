@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vet">
+            <h2><span jhiTranslate="jhpetclinicApp.vet.detail.title">Vet</span> {{ vet.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhpetclinicApp.vet.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{ vet.firstName }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhpetclinicApp.vet.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{ vet.lastName }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhpetclinicApp.vet.specialties">Specialties</span></dt>
+                <dd>
+                    <span *ngFor="let specialties of vet.specialties; let last = last">
+                        <a [routerLink]="['/specialty', specialties?.id, 'view']">{{ specialties.name }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vet', vet.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -14,7 +14,18 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200627072227_added_entity_PetType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200627072327_added_entity_Specialty.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200627072427_added_entity_Vet.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200627072527_added_entity_Owner.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200627072627_added_entity_Pet.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200627072727_added_entity_Visit.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20200627072427_added_entity_constraints_Vet.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200627072627_added_entity_constraints_Pet.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200627072727_added_entity_constraints_Visit.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+
+    <include file="config/liquibase/data/petclinic-data.sql" />
 </databaseChangeLog>

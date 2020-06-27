@@ -1,0 +1,23 @@
+{
+  "jhpetclinicApp": {
+    "specialty": {
+      "home": {
+        "title": "Specialties",
+        "createLabel": "Create a new Specialty",
+        "createOrEditLabel": "Create or edit a Specialty",
+        "notFound": "No Specialties found"
+      },
+      "created": "A new Specialty is created with identifier {{ param }}",
+      "updated": "A Specialty is updated with identifier {{ param }}",
+      "deleted": "A Specialty is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Specialty {{ id }}?"
+      },
+      "detail": {
+        "title": "Specialty"
+      },
+      "name": "Name",
+      "vets": "Vets"
+    }
+  }
+}

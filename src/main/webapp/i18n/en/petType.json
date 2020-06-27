@@ -1,0 +1,22 @@
+{
+  "jhpetclinicApp": {
+    "petType": {
+      "home": {
+        "title": "Pet Types",
+        "createLabel": "Create a new Pet Type",
+        "createOrEditLabel": "Create or edit a Pet Type",
+        "notFound": "No Pet Types found"
+      },
+      "created": "A new Pet Type is created with identifier {{ param }}",
+      "updated": "A Pet Type is updated with identifier {{ param }}",
+      "deleted": "A Pet Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Pet Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Pet Type"
+      },
+      "name": "Name"
+    }
+  }
+}

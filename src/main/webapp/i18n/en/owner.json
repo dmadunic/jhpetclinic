@@ -1,0 +1,27 @@
+{
+  "jhpetclinicApp": {
+    "owner": {
+      "home": {
+        "title": "Owners",
+        "createLabel": "Create a new Owner",
+        "createOrEditLabel": "Create or edit a Owner",
+        "notFound": "No Owners found"
+      },
+      "created": "A new Owner is created with identifier {{ param }}",
+      "updated": "A Owner is updated with identifier {{ param }}",
+      "deleted": "A Owner is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Owner {{ id }}?"
+      },
+      "detail": {
+        "title": "Owner"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "address": "Address",
+      "city": "City",
+      "telephone": "Telephone",
+      "pets": "Pets"
+    }
+  }
+}
