@@ -1,46 +1,55 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-10">
         <div *ngIf="owner">
-            <h2><span jhiTranslate="jhpetclinicApp.owner.detail.title">Owner</span> {{ owner.id }}</h2>
-
-            <hr>
-
+            <h2><span jhiTranslate="jhpetclinicApp.owner.detail.title">Owner</span></h2>
             <jhi-alert-error></jhi-alert-error>
-
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="jhpetclinicApp.owner.firstName">First Name</span></dt>
-                <dd>
-                    <span>{{ owner.firstName }}</span>
-                </dd>
-                <dt><span jhiTranslate="jhpetclinicApp.owner.lastName">Last Name</span></dt>
-                <dd>
-                    <span>{{ owner.lastName }}</span>
-                </dd>
-                <dt><span jhiTranslate="jhpetclinicApp.owner.address">Address</span></dt>
-                <dd>
-                    <span>{{ owner.address }}</span>
-                </dd>
-                <dt><span jhiTranslate="jhpetclinicApp.owner.city">City</span></dt>
-                <dd>
-                    <span>{{ owner.city }}</span>
-                </dd>
-                <dt><span jhiTranslate="jhpetclinicApp.owner.telephone">Telephone</span></dt>
-                <dd>
-                    <span>{{ owner.telephone }}</span>
-                </dd>
-            </dl>
-
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
+            <table class="table table-sm">
+                <tr>
+                    <td><span class="font-weight-bold" jhiTranslate="global.field.id">ID</span>:</td>
+                    <td><span class="font-weight-bold">{{ owner.id }}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.name">Name</span></td>
+                    <td><span>{{ owner.firstName }} {{ owner.lastName }}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.address">Address</span></td>
+                    <td><span>{{ owner.address }}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.city">City</span></td>
+                    <td><span>{{ owner.city }}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.telephone">Telephone</span></td>
+                    <td><span>{{ owner.telephone }}</span></td>
+                </tr>
+            </table>
 
             <button type="button"
                     [routerLink]="['/owner', owner.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
+            <button type="button"
+                    [routerLink]="['/pet/new']"
+                    class="btn btn-primary">
+                <fa-icon icon="plus"></fa-icon>&nbsp;<span jhiTranslate="jhpetclinicApp.owner.detail.addPet">Add pet</span>
+            </button>
         </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-10">
+        <h2>Pets and Vists</h2>
+        <hr>
+        
+    </div>
+</div>    
+<div class="row justify-content-center">
+    <div class="col-10">
+        <button type="submit" (click)="previousState()" class="btn btn-info">
+            <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
     </div>
 </div>

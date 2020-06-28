@@ -33,7 +33,7 @@
 
     <div class="table-responsive" id="entities" *ngIf="owners && owners.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
+            <thead class="table-secondary">
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="firstName"><span jhiTranslate="jhpetclinicApp.owner.firstName">First Name</span> <fa-icon icon="sort"></fa-icon></th>

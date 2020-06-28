@@ -14,14 +14,16 @@
         "question": "Are you sure you want to delete Owner {{ id }}?"
       },
       "detail": {
-        "title": "Owner information"
+        "title": "Owner information",
+        "addPet": "Add New Pet"
       },
       "firstName": "First Name",
       "lastName": "Last Name",
       "address": "Address",
       "city": "City",
       "telephone": "Telephone",
-      "pets": "Pets"
+      "pets": "Pets",
+      "name": "Name"
     }
   }
 }
