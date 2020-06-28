@@ -3,7 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 
 import { IPet, Pet } from 'app/shared/model/pet.model';
 import { PetService } from './pet.service';
@@ -23,6 +23,8 @@ export class PetUpdateComponent implements OnInit {
   pettypes: IPetType[] = [];
   owners: IOwner[] = [];
   birthDateDp: any;
+  ownerId: number | null = null;
+  initialized = false;
 
   editForm = this.fb.group({
     id: [],
@@ -41,12 +43,18 @@ export class PetUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ pet }) => {
-      this.updateForm(pet);
-
-      this.petTypeService.query().subscribe((res: HttpResponse<IPetType[]>) => (this.pettypes = res.body || []));
-
-      this.ownerService.query().subscribe((res: HttpResponse<IOwner[]>) => (this.owners = res.body || []));
+    const obsComb = combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data, qparams) => ({ data, qparams }));
+    obsComb.subscribe(ap => {
+      if (!this.initialized) {
+        this.updateForm(ap.data.pet);
+        if (ap.qparams.get('ownerId')) {
+          this.ownerId = Number(ap.qparams.get('ownerId'));
+          this.editForm.patchValue({ ownerId: this.ownerId });
+        }
+        this.petTypeService.query().subscribe((res: HttpResponse<IPetType[]>) => (this.pettypes = res.body || []));
+        this.ownerService.query().subscribe((res: HttpResponse<IOwner[]>) => (this.owners = res.body || []));
+        this.initialized = true;
+      }
     });
   }
 

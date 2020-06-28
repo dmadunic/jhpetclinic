@@ -33,6 +33,7 @@
             </button>
             <button type="button"
                     [routerLink]="['/pet/new']"
+                    [queryParams]="{ ownerId : owner.id }"
                     class="btn btn-primary">
                 <fa-icon icon="plus"></fa-icon>&nbsp;<span jhiTranslate="jhpetclinicApp.owner.detail.addPet">Add pet</span>
             </button>
@@ -43,7 +44,7 @@
     <div class="col-10">
         <h2>Pets and Vists</h2>
         <hr>
-        
+
     </div>
 </div>    
 <div class="row justify-content-center">
