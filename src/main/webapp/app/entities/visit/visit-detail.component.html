@@ -10,7 +10,7 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="jhpetclinicApp.visit.visitDate">Visit Date</span></dt>
                 <dd>
-                    <span>{{ visit.visitDate }}</span>
+                    <span>{{ visit.visitDate | date:'mediumDate' }}</span>
                 </dd>
                 <dt><span jhiTranslate="jhpetclinicApp.visit.description">Description</span></dt>
                 <dd>

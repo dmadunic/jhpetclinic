@@ -2,7 +2,7 @@
 
 This is JHipster version of the legendary Spring Petclinic application.
 
-Master branch contians the final version of the jhpetclinic application while specific branches exists for the various
+Master branch contains the final version of the jhpetclinic application while specific branches exists for the various
 development versions.
 
 ## Development
