@@ -25,6 +25,7 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="firstName"><span jhiTranslate="jhpetclinicApp.vet.firstName">First Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="lastName"><span jhiTranslate="jhpetclinicApp.vet.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"><span jhiTranslate="jhpetclinicApp.vet.specialties">Specialties</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,6 +34,9 @@
                     <td><a [routerLink]="['/vet', vet.id, 'view']">{{ vet.id }}</a></td>
                     <td>{{ vet.firstName }}</td>
                     <td>{{ vet.lastName }}</td>
+                    <td>
+                        <span *ngFor="let spec of vet.specialties" class="badge badge-info p-1 mr-1">{{ spec.name }}</span>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
