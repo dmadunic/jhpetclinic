@@ -6,11 +6,11 @@
       "home": "Home",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entities",
+        "main": "Configuration",
         "petType": "Pet Type",
         "specialty": "Specialty",
-        "vet": "Vet",
-        "owner": "Owner",
+        "vet": "Veterinarians",
+        "owner": "Owners",
         "pet": "Pet",
         "visit": "Visit",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"

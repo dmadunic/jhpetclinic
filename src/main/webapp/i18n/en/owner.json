@@ -14,7 +14,7 @@
         "question": "Are you sure you want to delete Owner {{ id }}?"
       },
       "detail": {
-        "title": "Owner"
+        "title": "Owner information"
       },
       "firstName": "First Name",
       "lastName": "Last Name",

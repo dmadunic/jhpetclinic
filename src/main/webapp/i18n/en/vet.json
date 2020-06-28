@@ -2,19 +2,19 @@
   "jhpetclinicApp": {
     "vet": {
       "home": {
-        "title": "Vets",
-        "createLabel": "Create a new Vet",
-        "createOrEditLabel": "Create or edit a Vet",
-        "notFound": "No Vets found"
+        "title": "Veterinarians",
+        "createLabel": "Create a new Veterinarian",
+        "createOrEditLabel": "Create or edit a Veterinarian",
+        "notFound": "No Veterinarian found"
       },
-      "created": "A new Vet is created with identifier {{ param }}",
-      "updated": "A Vet is updated with identifier {{ param }}",
-      "deleted": "A Vet is deleted with identifier {{ param }}",
+      "created": "A new Veterinarian is created with identifier {{ param }}",
+      "updated": "A Veterinarian is updated with identifier {{ param }}",
+      "deleted": "A VVeterinarian is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Vet {{ id }}?"
+        "question": "Are you sure you want to delete Veterinarian {{ id }}?"
       },
       "detail": {
-        "title": "Vet"
+        "title": "Veterinarian information"
       },
       "firstName": "First Name",
       "lastName": "Last Name",
