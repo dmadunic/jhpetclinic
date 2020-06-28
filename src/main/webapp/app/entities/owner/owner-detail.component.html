@@ -3,29 +3,31 @@
         <div *ngIf="owner">
             <h2><span jhiTranslate="jhpetclinicApp.owner.detail.title">Owner</span></h2>
             <jhi-alert-error></jhi-alert-error>
-            <table class="table table-sm">
-                <tr>
-                    <td><span class="font-weight-bold" jhiTranslate="global.field.id">ID</span>:</td>
-                    <td><span class="font-weight-bold">{{ owner.id }}</span></td>
-                </tr>
-                <tr>
-                    <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.name">Name</span></td>
-                    <td><span>{{ owner.firstName }} {{ owner.lastName }}</span></td>
-                </tr>
-                <tr>
-                    <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.address">Address</span></td>
-                    <td><span>{{ owner.address }}</span></td>
-                </tr>
-                <tr>
-                    <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.city">City</span></td>
-                    <td><span>{{ owner.city }}</span></td>
-                </tr>
-                <tr>
-                    <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.telephone">Telephone</span></td>
-                    <td><span>{{ owner.telephone }}</span></td>
-                </tr>
+            <table class="table table-sm table-striped">
+                <tbody>
+                    <tr>
+                        <td><span class="font-weight-bold" jhiTranslate="global.field.id">ID</span>:</td>
+                        <td><span class="font-weight-bold">{{ owner.id }}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.name">Name</span></td>
+                        <td><span>{{ owner.firstName }} {{ owner.lastName }}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.address">Address</span></td>
+                        <td><span>{{ owner.address }}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.city">City</span></td>
+                        <td><span>{{ owner.city }}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="font-weight-bold" jhiTranslate="jhpetclinicApp.owner.telephone">Telephone</span></td>
+                        <td><span>{{ owner.telephone }}</span></td>
+                    </tr>
+                </tbody>
             </table>
-
+            
             <button type="button"
                     [routerLink]="['/owner', owner.id, 'edit']"
                     class="btn btn-primary">
@@ -42,9 +44,39 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-10">
+        <br>
         <h2>Pets and Vists</h2>
-        <hr>
+        <hr *ngIf="pets?.length === 0">
+        <table class="table table-borderless table-sm" *ngIf="pets && pets!.length > 0">
+            <tbody>
+                <ng-template ngFor let-pet [ngForOf]="pets" let-i="index">
+                    <tr class="border-top">
+                        <td class="font-weight-bold"><span jhiTranslate="jhpetclinicApp.pet.name">Name</span>:</th>
+                        <td>{{ pet.name }}</td>
+                        <td rowspan="3">
 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold"><span jhiTranslate="jhpetclinicApp.pet.birthDate">Birth Date</span>:</th>
+                        <td>{{ pet.birthDate | date:'mediumDate' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold"><span jhiTranslate="jhpetclinicApp.pet.type">Type</span>:</th>
+                        <td>{{ pet.typeName }}</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td>
+                            <a [routerLink]="['/pet', pet.id, 'edit']">Edit Pet</a>
+                        </td>
+                        <td></td>
+                        <td>
+                            <a [routerLink]="['/vist/new']" [queryParams]="{ petId : pet.id }">Add Visit</a>
+                        </td>
+                    </tr>
+                </ng-template>
+            </tbody>
+        </table>
     </div>
 </div>    
 <div class="row justify-content-center">
