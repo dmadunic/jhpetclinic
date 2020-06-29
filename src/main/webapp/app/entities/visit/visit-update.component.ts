@@ -48,12 +48,6 @@ export class VisitUpdateComponent implements OnInit {
         this.initialized = true;
       }
     });
-    /*
-    this.activatedRoute.data.subscribe(({ visit }) => {
-      this.updateForm(visit);
-
-      this.petService.query().subscribe((res: HttpResponse<IPet[]>) => (this.pets = res.body || []));
-    });*/
   }
 
   updateForm(visit: IVisit): void {
