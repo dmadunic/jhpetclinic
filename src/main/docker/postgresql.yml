@@ -2,11 +2,11 @@ version: '2'
 services:
   jhpetclinic-postgresql:
     image: postgres:12.3
-    # volumes:
-    #     - ~/volumes/jhipster/jhpetclinic/postgresql/:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=jhpetclinic
       - POSTGRES_PASSWORD=jhpetclinic
       - POSTGRES_HOST_AUTH_METHOD=trust
+    #volumes:
+    #  - ~/volumes/jhpetclinic/postgresql/:/var/lib/postgresql/data/
     ports:
       - 5432:5432

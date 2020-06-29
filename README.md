@@ -5,6 +5,46 @@ This is JHipster version of the legendary Spring Petclinic application.
 Master branch contains the final version of the jhpetclinic application while specific branches exists for the various
 development versions.
 
+## Running jhpetclinic as docker service
+
+The easiest way to run jhpetclinc is as docker service. To run it together with Postgres (run as docker service also) modify the following
+docker-compose yml file with your email server data.
+
+```yaml
+version: '2'
+services:
+  jhpetclinic-app:
+    image: ag04/jhpetclinic:latest
+    environment:
+      _JAVA_OPTIONS: '-Xmx512m -Xms256m'
+      SPRING_PROFILES_ACTIVE: 'prod,swagger'
+      MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: 'true'
+      SERVER_SERVLET_CONTEXT_PATH: '/'
+      JHIPSTER_SLEEP: '5' # gives time for other services to boot before the application
+      DATASOURCE_URL: jdbc:postgresql://jhpetclinic-postgresql:5432/jhpetclinic
+      DB_USER: 'jhpetclinic'
+      DB_PWD: 'jhpetclinic'
+      DB_NAME: 'jhpetclinic'
+      DB_SCHEMA: 'public'
+      MAIL_HOST: 'localhost'
+      MAIL_PORT: 25
+      MAIL_USERNAME: ''
+      MAIL_PWD: ''
+      MAIL_APP_BASE_URL: 'localhost:8080/'
+    ports:
+      - 8080:8080
+  jhpetclinic-postgresql:
+    image: postgres:12.3
+    environment:
+      - POSTGRES_USER=jhpetclinic
+      - POSTGRES_PASSWORD=jhpetclinic
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - jhpetclinic-db-data:/var/lib/postgresql/data/
+volumes:
+  jhpetclinic-db-data:
+```
+
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:

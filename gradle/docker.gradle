@@ -1,9 +1,25 @@
+def imageName = 'ag04/jhpetclinic'
+def imageVersion = "${version}"
+def dockerRegistryUrl = ''
+
+if (project.hasProperty("imageName")) {
+    imageName = project.getProperty("imageName");
+}
+
+if (project.hasProperty("imageVersion")) {
+    imageVersion = project.getProperty("imageVersion")
+}
+
+if (project.hasProperty("dockerRegistryUrl")) {
+    dockerRegistryUrl = project.getProperty("dockerRegistryUrl") + "/";
+}
+
 jib {
     from {
         image = "adoptopenjdk:11-jre-hotspot"
     }
     to {
-        image = "jhpetclinic:latest"
+        image = "${dockerRegistryUrl}${imageName}:${imageVersion}"
     }
     container {
         entrypoint = ["bash", "-c", "/entrypoint.sh"]
