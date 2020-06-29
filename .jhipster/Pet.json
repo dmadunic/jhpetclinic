@@ -14,6 +14,12 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "visit",
+      "otherEntityRelationshipName": "pet",
+      "relationshipName": "visits"
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "petType",
       "otherEntityRelationshipName": "pet",

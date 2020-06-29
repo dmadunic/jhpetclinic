@@ -57,6 +57,7 @@ public class CacheConfiguration {
             createCache(cm, org.jhipster.petclinic.domain.Owner.class.getName() + ".pets");
             createCache(cm, org.jhipster.petclinic.domain.Pet.class.getName());
             createCache(cm, org.jhipster.petclinic.domain.Visit.class.getName());
+            createCache(cm, org.jhipster.petclinic.domain.Pet.class.getName() + ".visits");
             // jhipster-needle-ehcache-add-entry
         };
     }

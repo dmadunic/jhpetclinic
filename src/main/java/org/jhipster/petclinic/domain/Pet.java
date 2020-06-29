@@ -9,6 +9,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Pet.
@@ -31,6 +33,10 @@ public class Pet implements Serializable {
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
+
+    @OneToMany(mappedBy = "pet")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Visit> visits = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "pets", allowSetters = true)
@@ -73,6 +79,31 @@ public class Pet implements Serializable {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Set<Visit> getVisits() {
+        return visits;
+    }
+
+    public Pet visits(Set<Visit> visits) {
+        this.visits = visits;
+        return this;
+    }
+
+    public Pet addVisits(Visit visit) {
+        this.visits.add(visit);
+        visit.setPet(this);
+        return this;
+    }
+
+    public Pet removeVisits(Visit visit) {
+        this.visits.remove(visit);
+        visit.setPet(null);
+        return this;
+    }
+
+    public void setVisits(Set<Visit> visits) {
+        this.visits = visits;
     }
 
     public PetType getType() {

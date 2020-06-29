@@ -2,6 +2,7 @@ package org.jhipster.petclinic.web.rest;
 
 import org.jhipster.petclinic.JhpetclinicApp;
 import org.jhipster.petclinic.domain.Pet;
+import org.jhipster.petclinic.domain.Visit;
 import org.jhipster.petclinic.domain.PetType;
 import org.jhipster.petclinic.domain.Owner;
 import org.jhipster.petclinic.repository.PetRepository;
@@ -385,6 +386,26 @@ public class PetResourceIT {
 
         // Get all the petList where birthDate is greater than SMALLER_BIRTH_DATE
         defaultPetShouldBeFound("birthDate.greaterThan=" + SMALLER_BIRTH_DATE);
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllPetsByVisitsIsEqualToSomething() throws Exception {
+        // Initialize the database
+        petRepository.saveAndFlush(pet);
+        Visit visits = VisitResourceIT.createEntity(em);
+        em.persist(visits);
+        em.flush();
+        pet.addVisits(visits);
+        petRepository.saveAndFlush(pet);
+        Long visitsId = visits.getId();
+
+        // Get all the petList where visits equals to visitsId
+        defaultPetShouldBeFound("visitsId.equals=" + visitsId);
+
+        // Get all the petList where visits equals to visitsId + 1
+        defaultPetShouldNotBeFound("visitsId.equals=" + (visitsId + 1));
     }
 
 

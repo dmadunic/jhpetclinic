@@ -31,6 +31,8 @@ public class PetCriteria implements Serializable, Criteria {
 
     private LocalDateFilter birthDate;
 
+    private LongFilter visitsId;
+
     private LongFilter typeId;
 
     private LongFilter ownerId;
@@ -42,6 +44,7 @@ public class PetCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.name = other.name == null ? null : other.name.copy();
         this.birthDate = other.birthDate == null ? null : other.birthDate.copy();
+        this.visitsId = other.visitsId == null ? null : other.visitsId.copy();
         this.typeId = other.typeId == null ? null : other.typeId.copy();
         this.ownerId = other.ownerId == null ? null : other.ownerId.copy();
     }
@@ -75,6 +78,14 @@ public class PetCriteria implements Serializable, Criteria {
         this.birthDate = birthDate;
     }
 
+    public LongFilter getVisitsId() {
+        return visitsId;
+    }
+
+    public void setVisitsId(LongFilter visitsId) {
+        this.visitsId = visitsId;
+    }
+
     public LongFilter getTypeId() {
         return typeId;
     }
@@ -105,6 +116,7 @@ public class PetCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
             Objects.equals(birthDate, that.birthDate) &&
+            Objects.equals(visitsId, that.visitsId) &&
             Objects.equals(typeId, that.typeId) &&
             Objects.equals(ownerId, that.ownerId);
     }
@@ -115,6 +127,7 @@ public class PetCriteria implements Serializable, Criteria {
         id,
         name,
         birthDate,
+        visitsId,
         typeId,
         ownerId
         );
@@ -127,6 +140,7 @@ public class PetCriteria implements Serializable, Criteria {
                 (id != null ? "id=" + id + ", " : "") +
                 (name != null ? "name=" + name + ", " : "") +
                 (birthDate != null ? "birthDate=" + birthDate + ", " : "") +
+                (visitsId != null ? "visitsId=" + visitsId + ", " : "") +
                 (typeId != null ? "typeId=" + typeId + ", " : "") +
                 (ownerId != null ? "ownerId=" + ownerId + ", " : "") +
             "}";

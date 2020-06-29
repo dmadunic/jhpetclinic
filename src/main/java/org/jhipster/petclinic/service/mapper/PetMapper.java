@@ -18,6 +18,8 @@ public interface PetMapper extends EntityMapper<PetDTO, Pet> {
     @Mapping(source = "owner.lastName", target = "ownerLastName")
     PetDTO toDto(Pet pet);
 
+    @Mapping(target = "visits", ignore = true)
+    @Mapping(target = "removeVisits", ignore = true)
     @Mapping(source = "typeId", target = "type")
     @Mapping(source = "ownerId", target = "owner")
     Pet toEntity(PetDTO petDTO);

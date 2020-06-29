@@ -97,6 +97,10 @@ public class PetQueryService extends QueryService<Pet> {
             if (criteria.getBirthDate() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getBirthDate(), Pet_.birthDate));
             }
+            if (criteria.getVisitsId() != null) {
+                specification = specification.and(buildSpecification(criteria.getVisitsId(),
+                    root -> root.join(Pet_.visits, JoinType.LEFT).get(Visit_.id)));
+            }
             if (criteria.getTypeId() != null) {
                 specification = specification.and(buildSpecification(criteria.getTypeId(),
                     root -> root.join(Pet_.type, JoinType.LEFT).get(PetType_.id)));

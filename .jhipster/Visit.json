@@ -16,7 +16,7 @@
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "pet",
-      "otherEntityRelationshipName": "visit",
+      "otherEntityRelationshipName": "visits",
       "relationshipName": "pet",
       "otherEntityField": "name"
     }

@@ -18,6 +18,7 @@
       },
       "name": "Name",
       "birthDate": "Birth Date",
+      "visits": "Visits",
       "type": "Type",
       "owner": "Owner"
     }
