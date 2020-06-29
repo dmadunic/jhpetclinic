@@ -8,6 +8,7 @@ import org.jhipster.petclinic.service.mapper.VisitMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,12 @@ public class VisitServiceImpl implements VisitService {
 
     private final VisitMapper visitMapper;
 
-    public VisitServiceImpl(VisitRepository visitRepository, VisitMapper visitMapper) {
+    private final CacheManager cacheManager;
+
+    public VisitServiceImpl(VisitRepository visitRepository, VisitMapper visitMapper, CacheManager cacheManager) {
         this.visitRepository = visitRepository;
         this.visitMapper = visitMapper;
+        this.cacheManager = cacheManager;
     }
 
     /**
@@ -44,6 +48,7 @@ public class VisitServiceImpl implements VisitService {
         log.debug("Request to save Visit : {}", visitDTO);
         Visit visit = visitMapper.toEntity(visitDTO);
         visit = visitRepository.save(visit);
+        cacheManager.getCache(org.jhipster.petclinic.domain.Pet.class.getName()+ ".visits").invalidate();
         return visitMapper.toDto(visit);
     }
 
