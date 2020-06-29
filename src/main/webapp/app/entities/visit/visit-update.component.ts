@@ -3,7 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 
 import { IVisit, Visit } from 'app/shared/model/visit.model';
 import { VisitService } from './visit.service';
@@ -18,6 +18,8 @@ export class VisitUpdateComponent implements OnInit {
   isSaving = false;
   pets: IPet[] = [];
   visitDateDp: any;
+  petId: number | null = null;
+  initialized = false;
 
   editForm = this.fb.group({
     id: [],
@@ -34,11 +36,24 @@ export class VisitUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const obsComb = combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data, qparams) => ({ data, qparams }));
+    obsComb.subscribe(ap => {
+      if (!this.initialized) {
+        this.updateForm(ap.data.visit);
+        if (ap.qparams.get('petId')) {
+          this.petId = Number(ap.qparams.get('petId'));
+          this.editForm.patchValue({ petId: this.petId });
+        }
+        this.petService.query().subscribe((res: HttpResponse<IPet[]>) => (this.pets = res.body || []));
+        this.initialized = true;
+      }
+    });
+    /*
     this.activatedRoute.data.subscribe(({ visit }) => {
       this.updateForm(visit);
 
       this.petService.query().subscribe((res: HttpResponse<IPet[]>) => (this.pets = res.body || []));
-    });
+    });*/
   }
 
   updateForm(visit: IVisit): void {

@@ -51,7 +51,7 @@
             <tbody>
                 <ng-template ngFor let-pet [ngForOf]="pets" let-i="index">
                     <tr class="border-top">
-                        <td class="font-weight-bold"><span jhiTranslate="jhpetclinicApp.pet.name">Name</span>:</td>
+                        <td class="font-weight-bold text-right"><span jhiTranslate="jhpetclinicApp.pet.name">Name</span>:</td>
                         <td>{{ pet.name }}</td>
                         <td rowspan="3">
                             <table class="table table-borderless table-sm">
@@ -69,11 +69,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold"><span jhiTranslate="jhpetclinicApp.pet.birthDate">Birth Date</span>:</td>
+                        <td class="font-weight-bold text-right"><span jhiTranslate="jhpetclinicApp.pet.birthDate">Birth Date</span>:</td>
                         <td>{{ pet.birthDate | date:'mediumDate' }}</td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold"><span jhiTranslate="jhpetclinicApp.pet.type">Type</span>:</td>
+                        <td class="font-weight-bold text-right"><span jhiTranslate="jhpetclinicApp.pet.type">Type</span>:</td>
                         <td>{{ pet.typeName }}</td>
                     </tr>
                     <tr class="border-bottom">
@@ -82,7 +82,7 @@
                         </td>
                         <td></td>
                         <td>
-                            <a routerLink="/vist/new">Add Visit</a>
+                            <a routerLink="/visit/new" [queryParams]="{ petId : pet.id }">Add Visit</a>
                         </td>
                     </tr>
                 </ng-template>
