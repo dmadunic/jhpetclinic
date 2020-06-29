@@ -3,6 +3,8 @@ package org.jhipster.petclinic.service.dto;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A DTO for the {@link org.jhipster.petclinic.domain.Pet} entity.
@@ -17,7 +19,6 @@ public class PetDTO implements Serializable {
 
     private LocalDate birthDate;
 
-
     private Long typeId;
 
     private String typeName;
@@ -25,6 +26,9 @@ public class PetDTO implements Serializable {
     private Long ownerId;
 
     private String ownerLastName;
+
+    private Set<VisitDTO> visits = new HashSet<>();
+
     
     public Long getId() {
         return id;
@@ -80,6 +84,14 @@ public class PetDTO implements Serializable {
 
     public void setOwnerLastName(String ownerLastName) {
         this.ownerLastName = ownerLastName;
+    }
+
+    public Set<VisitDTO> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Set<VisitDTO> visits) {
+        this.visits = visits;
     }
 
     @Override

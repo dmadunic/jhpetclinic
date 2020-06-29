@@ -9,7 +9,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Pet} and its DTO {@link PetDTO}.
  */
-@Mapper(componentModel = "spring", uses = {PetTypeMapper.class, OwnerMapper.class})
+@Mapper(componentModel = "spring", uses = {PetTypeMapper.class, OwnerMapper.class, VisitMapper.class})
 public interface PetMapper extends EntityMapper<PetDTO, Pet> {
 
     @Mapping(source = "type.id", target = "typeId")

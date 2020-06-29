@@ -1,5 +1,5 @@
 import { Moment } from 'moment';
-
+import { IVisit } from './visit.model';
 export interface IPet {
   id?: number;
   name?: string;
@@ -8,6 +8,7 @@ export interface IPet {
   typeId?: number;
   ownerLastName?: string;
   ownerId?: number;
+  visits?: IVisit[];
 }
 
 export class Pet implements IPet {
@@ -18,6 +19,7 @@ export class Pet implements IPet {
     public typeName?: string,
     public typeId?: number,
     public ownerLastName?: string,
-    public ownerId?: number
+    public ownerId?: number,
+    public visits?: IVisit[]
   ) {}
 }

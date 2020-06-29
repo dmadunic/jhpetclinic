@@ -16,7 +16,7 @@
                     </span>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="owner" routerLinkActive="active" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="user"></fa-icon>
@@ -24,7 +24,7 @@
                     </span>
                 </a>
             </li>
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="vet" routerLinkActive="active" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="plus-circle"></fa-icon>
@@ -74,13 +74,13 @@
                             <span jhiTranslate="global.menu.entities.pet">Pet</span>
                         </a>
                     </li>
+                    -->
                     <li>
                         <a class="dropdown-item" routerLink="visit" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.visit">Visit</span>
                         </a>
                     </li>
-                    -->
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
