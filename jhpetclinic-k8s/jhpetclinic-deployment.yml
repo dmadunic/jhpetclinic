@@ -27,23 +27,6 @@ spec:
                         - jhpetclinic
                 topologyKey: kubernetes.io/hostname
               weight: 100
-      initContainers:
-        - name: init-ds
-          image: busybox:latest
-          command:
-            - '/bin/sh'
-            - '-c'
-            - |
-              while true
-              do
-                rt=$(nc -z -w 1 jhpetclinic-postgresql 5432)
-                if [ $? -eq 0 ]; then
-                  echo "DB is UP"
-                  break
-                fi
-                echo "DB is not yet reachable;sleep for 10s before retry"
-                sleep 10
-              done
       containers:
         - name: jhpetclinic-app
           image: docker.io/ag04/jhpetclinic:latest
@@ -60,10 +43,7 @@ spec:
             - name: DB_USER
               value: jhpetclinic
             - name: DB_PWD
-              valueFrom:
-                secretKeyRef:
-                  name: jhpetclinic-postgresql
-                  key: postgresql-password
+              value: jhpetclinic
             - name: JAVA_OPTS
               value: ' -Xmx256m -Xms256m'
             - name: LIQUIBASE_CONTEXTS
@@ -73,7 +53,7 @@ spec:
             - name: MAIL_HOST
               value: localhost
             - name: MAIL_PORT
-              value: 25
+              value: '25'
             - name: MAIL_USERNAME
               value: changeme
             - name: MAIL_PWD
@@ -102,3 +82,23 @@ spec:
               path: /management/health
               port: http
             initialDelaySeconds: 120
+        - name: cloudsql-proxy
+          image: b.gcr.io/cloudsql-docker/gce-proxy:1.17
+          command: ["/cloud_sql_proxy", "--dir=/cloudsql",
+                    "-instances=jhpetclinic:us-central1:gcloud-postgres=tcp:5432",
+                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          securityContext:
+            runAsNonRoot: true
+          volumeMounts:
+            - name: cloudsql-oauth-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+            - name: ssl-certs
+              mountPath: /etc/ssl/certs
+      volumes:
+        - name: cloudsql-oauth-credentials
+          secret:
+            secretName: cloudsql-oauth-credentials
+        - name: ssl-certs
+          hostPath:
+            path: /etc/ssl/certs
