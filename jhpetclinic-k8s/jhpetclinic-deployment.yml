@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jhpetclinic
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jhpetclinic
+      version: 'v1'
+  template:
+    metadata:
+      labels:
+        app: jhpetclinic
+        version: 'v1'
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - jhpetclinic
+                topologyKey: kubernetes.io/hostname
+              weight: 100
+      initContainers:
+        - name: init-ds
+          image: busybox:latest
+          command:
+            - '/bin/sh'
+            - '-c'
+            - |
+              while true
+              do
+                rt=$(nc -z -w 1 jhpetclinic-postgresql 5432)
+                if [ $? -eq 0 ]; then
+                  echo "DB is UP"
+                  break
+                fi
+                echo "DB is not yet reachable;sleep for 10s before retry"
+                sleep 10
+              done
+      containers:
+        - name: jhpetclinic-app
+          image: docker.io/ag04/jhpetclinic:latest
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod,swagger
+            - name: JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: secret
+            - name: DATASOURCE_URL
+              value: jdbc:postgresql://localhost:5432/jhpetclinic
+            - name: DB_USER
+              value: jhpetclinic
+            - name: DB_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: jhpetclinic-postgresql
+                  key: postgresql-password
+            - name: JAVA_OPTS
+              value: ' -Xmx256m -Xms256m'
+            - name: LIQUIBASE_CONTEXTS
+              value: prod
+            - name: DB_SCHEMA
+              value: public
+            - name: MAIL_HOST
+              value: localhost
+            - name: MAIL_PORT
+              value: 25
+            - name: MAIL_USERNAME
+              value: changeme
+            - name: MAIL_PWD
+              value: changeme
+            - name: MAIL_APP_BASE_URL
+              value: jhpetclinic.appspot.com
+          resources:
+            requests:
+              memory: '512Mi'
+              cpu: '500m'
+            limits:
+              memory: '1Gi'
+              cpu: '1'
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /management/health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /management/health
+              port: http
+            initialDelaySeconds: 120

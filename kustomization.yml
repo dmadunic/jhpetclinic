@@ -1,0 +1,11 @@
+commonLabels:
+  app.kubernetes.io/genereted-by: JHipster
+
+resources:
+  # Individual apps
+  - jhpetclinic-k8s/jhpetclinic-deployment.yml
+  - jhpetclinic-k8s/jhpetclinic-service.yml
+  - jhpetclinic-k8s/jwt-secret.yml
+# service discovery eureka/consul
+
+patchesJson6902:
