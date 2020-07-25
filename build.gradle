@@ -262,7 +262,12 @@ dependencies {
     implementation "io.springfox:springfox-bean-validators"
     implementation "org.postgresql:postgresql"
     liquibaseRuntime "org.postgresql:postgresql"
-    compile "com.google.cloud.sql:postgres-socket-factory:1.0.12"
+    implementation "com.google.cloud.sql:postgres-socket-factory:1.0.12"
+
+    implementation "com.microsoft.sqlserver:mssql-jdbc"
+    implementation "com.github.sabomichal:liquibase-mssql"
+    liquibaseRuntime  "com.microsoft.sqlserver:mssql-jdbc"
+    liquibaseRuntime "com.github.sabomichal:liquibase-mssql"
 
     implementation "org.mapstruct:mapstruct:${mapstruct_version}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"

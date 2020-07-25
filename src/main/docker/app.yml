@@ -1,13 +1,25 @@
 version: '2'
 services:
   jhpetclinic-app:
-    image: jhpetclinic
+    image: ag04/jhpetclinic:latest
     environment:
-      - _JAVA_OPTIONS=-Xmx512m -Xms256m
-      - SPRING_PROFILES_ACTIVE=prod,swagger
-      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://jhpetclinic-postgresql:5432/jhpetclinic
-      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+      _JAVA_OPTIONS: '-Xmx512m -Xms256m'
+      SPRING_PROFILES_ACTIVE: 'prod,swagger'
+      MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: 'true'
+      SERVER_SERVLET_CONTEXT_PATH: '/'
+      JHIPSTER_SLEEP: '5' # gives time for other services to boot before the application
+      DATASOURCE_URL: 'jdbc:postgresql://jhpetclinic-postgresql:5432/jhpetclinic'
+      JPA_DATABASE_PLATFORM: 'io.github.jhipster.domain.util.FixedPostgreSQL10Dialect'
+      JPA_DATABASE: 'SQL_SERVER'
+      DB_USER: 'jhpetclinic'
+      DB_PWD: 'jhpetclinic'
+      DB_NAME: 'jhpetclinic'
+      DB_SCHEMA: 'public'
+      MAIL_HOST: 'localhost'
+      MAIL_PORT: 25
+      MAIL_USERNAME: ''
+      MAIL_PWD: ''
+      MAIL_APP_BASE_URL: 'localhost:8080/'
     ports:
       - 8080:8080
   jhpetclinic-postgresql:

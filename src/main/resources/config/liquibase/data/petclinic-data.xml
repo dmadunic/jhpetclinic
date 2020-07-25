@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20200725-0002" author="dmadunic">
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT vets ON;
+        </sql>
+        <sql>
+            INSERT INTO vets (id, first_name, last_name) VALUES (1, 'James', 'Carter');
+            INSERT INTO vets (id, first_name, last_name) VALUES (2, 'Helen', 'Leary');
+            INSERT INTO vets (id, first_name, last_name) VALUES (3, 'Linda', 'Douglas');
+            INSERT INTO vets (id, first_name, last_name) VALUES (4, 'Rafael', 'Ortega');
+            INSERT INTO vets (id, first_name, last_name) VALUES (5, 'Henry', 'Stevens');
+            INSERT INTO vets (id, first_name, last_name) VALUES (6, 'Sharon', 'Jenkins');
+        </sql>
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT vets OFF;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20200725-0003" author="dmadunic">
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT specialties ON;
+        </sql>
+        <sql>
+             INSERT INTO specialties (id, name) VALUES (1, 'radiology');
+            INSERT INTO specialties (id, name) VALUES (2, 'surgery');
+            INSERT INTO specialties (id, name) VALUES (3, 'dentistry');
+        </sql>
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT specialties OFF;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20200725-0004" author="dmadunic">
+        <sql>
+            INSERT INTO vets_specialties(vet_id, specialties_id) VALUES (2, 1);
+            INSERT INTO vets_specialties(vet_id, specialties_id) VALUES (3, 2);
+            INSERT INTO vets_specialties(vet_id, specialties_id) VALUES (3, 3);
+            INSERT INTO vets_specialties(vet_id, specialties_id) VALUES (4, 2);
+            INSERT INTO vets_specialties(vet_id, specialties_id) VALUES (5, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="20200725-0005" author="dmadunic">
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT types ON;
+        </sql>
+        <sql>
+            INSERT INTO types (id, name) VALUES (1, 'cat');
+            INSERT INTO types (id, name) VALUES (2, 'dog');
+            INSERT INTO types (id, name) VALUES (3, 'lizard');
+            INSERT INTO types (id, name) VALUES (4, 'snake');
+            INSERT INTO types (id, name) VALUES (5, 'bird');
+            INSERT INTO types (id, name) VALUES (6, 'hamster');
+        </sql>
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT types OFF;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20200725-0006" author="dmadunic">
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT owners ON;
+        </sql>
+        <sql>
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435');
+            INSERT INTO owners (id, first_name, last_name, address, city, telephone) VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487');
+        </sql>
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT owners OFF;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20200725-0007" author="dmadunic">
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT pets ON;
+        </sql>
+        <sql>
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (1, 'Leo', '2000-09-07', 1, 1);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (2, 'Basil', '2002-08-06', 6, 2);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (3, 'Rosy', '2001-04-17', 2, 3);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (4, 'Jewel', '2000-03-07', 2, 3);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (5, 'Iggy', '2000-11-30', 3, 4);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (6, 'George', '2000-01-20', 4, 5);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (7, 'Samantha', '1995-09-04', 1, 6);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (8, 'Max', '1995-09-04', 1, 6);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (9, 'Lucky', '1999-08-06', 5, 7);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (10, 'Mulligan', '1997-02-24', 2, 8);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (11, 'Freddy', '2000-03-09', 5, 9);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (12, 'Lucky', '2000-06-24', 2, 10);
+            INSERT INTO pets (id, name, birth_date, type_id, owner_id) VALUES (13, 'Sly', '2002-06-08', 1, 10);
+        </sql>
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT pets OFF;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20200725-0008" author="dmadunic">
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT visits ON;
+        </sql>
+        <sql>
+            INSERT INTO visits(id, pet_id, visit_date, description) VALUES (1, 7, '2010-03-04', 'rabies shot');
+            INSERT INTO visits(id, pet_id, visit_date, description) VALUES (2, 8, '2011-03-04', 'rabies shot');
+            INSERT INTO visits(id, pet_id, visit_date, description) VALUES (3, 8, '2009-06-04', 'neutered');
+            INSERT INTO visits(id, pet_id, visit_date, description) VALUES (4, 7, '2008-09-04', 'spayed');
+        </sql>
+        <sql dbms="mssql">
+            SET IDENTITY_INSERT visits OFF;
+        </sql>
+    </changeSet>
+
+    <changeSet dbms="!mssql" id="20200725-0009" author="dmadunic">
+        <sql>
+            ALTER SEQUENCE owners_id_seq RESTART WITH 100;
+            ALTER SEQUENCE pets_id_seq RESTART WITH 100;
+            ALTER SEQUENCE specialties_id_seq RESTART WITH 100;
+            ALTER SEQUENCE types_id_seq RESTART WITH 100;
+            ALTER SEQUENCE vets_id_seq RESTART WITH 100;
+            ALTER SEQUENCE visits_id_seq RESTART WITH 100;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

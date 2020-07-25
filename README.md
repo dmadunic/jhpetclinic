@@ -21,7 +21,9 @@ services:
       MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: 'true'
       SERVER_SERVLET_CONTEXT_PATH: '/'
       JHIPSTER_SLEEP: '5' # gives time for other services to boot before the application
-      DATASOURCE_URL: jdbc:postgresql://jhpetclinic-postgresql:5432/jhpetclinic
+      DATASOURCE_URL: 'jdbc:postgresql://jhpetclinic-postgresql:5432/jhpetclinic'
+      JPA_DATABASE_PLATFORM: 'io.github.jhipster.domain.util.FixedPostgreSQL10Dialect'
+      JPA_DATABASE: 'SQL_SERVER'
       DB_USER: 'jhpetclinic'
       DB_PWD: 'jhpetclinic'
       DB_NAME: 'jhpetclinic'
@@ -202,11 +204,27 @@ To achieve this, first build a docker image of your app by running:
 
     ./gradlew bootJar -Pprod jibDockerBuild
 
+This will build image of the name: ag04/jhpetclinic:\${projectVersion}
+
+Now tag it with the latest tag:
+
+```bash
+docker tag ag04/jhpetclinic:${projectVersion} ag04/jhpetclinic:latest
+```
+
 Then run:
 
     docker-compose -f src/main/docker/app.yml up -d
 
 For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
+
+## Publish image to Docker Hub (optional)
+
+To manually publish image to the Docker Hub execute the following commands:
+
+```bash
+
+```
 
 ## Continuous Integration (optional)
 
