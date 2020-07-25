@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jhpetclinic
+  namespace: default
+  labels:
+    app: jhpetclinic
+spec:
+  selector:
+    app: jhpetclinic
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
