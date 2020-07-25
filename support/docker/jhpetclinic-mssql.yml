@@ -1,0 +1,24 @@
+version: '2'
+services:
+  jhpetclinic-app:
+    image: ag04/jhpetclinic:latest
+    environment:
+      _JAVA_OPTIONS: '-Xmx512m -Xms256m'
+      SPRING_PROFILES_ACTIVE: 'prod,swagger'
+      MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: 'true'
+      SERVER_SERVLET_CONTEXT_PATH: '/'
+      JHIPSTER_SLEEP: '2' # gives time for other services to boot before the application
+      DATASOURCE_URL: 'jdbc:sqlserver://localhost:1433;database=AG04'
+      JPA_DATABASE_PLATFORM: 'org.hibernate.dialect.SQLServer2012Dialect'
+      JPA_DATABASE: 'SQL_SERVER'
+      DB_USER: 'jhpetclinic'
+      DB_PWD: 'Jhpetclinic123'
+      DB_NAME: 'jhpetclinic'
+      DB_SCHEMA: 'jhpetclinic'
+      MAIL_HOST: 'localhost'
+      MAIL_PORT: 25
+      MAIL_USERNAME: ''
+      MAIL_PWD: ''
+      MAIL_APP_BASE_URL: 'localhost:8080/'
+    ports:
+      - 8080:8080
