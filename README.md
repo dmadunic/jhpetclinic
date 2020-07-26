@@ -5,6 +5,13 @@ This is JHipster version of the legendary Spring Petclinic application.
 Master branch contains the final version of the jhpetclinic application while specific branches exists for the various
 development versions.
 
+### Supported databases
+
+At the moment jhpetclinic has been tested with the following databases:
+
+- PostgresSQL
+- MSSQL
+
 ## Running jhpetclinic as docker service
 
 The easiest way to run jhpetclinc is as docker service. To run it together with Postgres (run as docker service also) modify the following
@@ -23,7 +30,7 @@ services:
       JHIPSTER_SLEEP: '5' # gives time for other services to boot before the application
       DATASOURCE_URL: 'jdbc:postgresql://jhpetclinic-postgresql:5432/jhpetclinic'
       JPA_DATABASE_PLATFORM: 'io.github.jhipster.domain.util.FixedPostgreSQL10Dialect'
-      JPA_DATABASE: 'SQL_SERVER'
+      JPA_DATABASE: 'POSTGRESQL'
       DB_USER: 'jhpetclinic'
       DB_PWD: 'jhpetclinic'
       DB_NAME: 'jhpetclinic'
@@ -223,7 +230,8 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 To manually publish image to the Docker Hub execute the following commands:
 
 ```bash
-
+./gradlew jib -Pprod
+./gradlew jib -Pprod -PimageVersion=latest
 ```
 
 ## Continuous Integration (optional)
