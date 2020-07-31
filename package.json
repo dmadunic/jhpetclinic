@@ -32,7 +32,9 @@
     "rxjs": "6.5.5",
     "swagger-ui-dist": "3.25.1",
     "tslib": "1.11.1",
-    "zone.js": "0.10.3"
+    "zone.js": "0.10.3",
+    "@ngx-loading-bar/core": "^4.2.0",
+    "@ngx-loading-bar/router": "^4.2.0"
   },
   "devDependencies": {
     "@angular/cli": "9.1.3",
