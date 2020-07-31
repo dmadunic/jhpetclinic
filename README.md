@@ -139,6 +139,37 @@ will generate few files:
     create src/main/webapp/app/my-component/my-component.component.ts
     update src/main/webapp/app/app.module.ts
 
+## Running jhpetclinic with local Postgres database
+The simplest way is to start the jhpetclinic with the following command:
+```bash
+./gradlew
+```
+This will start the jhpetclinic with pre-configured default **dev** profile.
+This profile assumes that jhpetclinic will connect to local Postgres database with the following configuration:
+```yaml
+datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/jhpetclinic
+    username: jhpetclinic
+    password: jhpetclinic
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+```
+
+### Setting up the local Postgres instance for default profile
+To setup a local postgres instance to match the settings above, login with the superuser privileges and perform the following list of tasks:
+1. Create **jhpetclinic** database:
+```sql
+CREATE DATABASE jhpetclinic;
+```
+
+2. Create user **jhpetclinic** with passord 'jhpetclinic' which will be owner of the newly created database
+```sql
+CREATE ROLE jhpetclinic NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT LOGIN PASSWORD 'jhpetclinic';
+```
+
+
 ## Building for production
 
 ### Packaging as jar
@@ -233,6 +264,7 @@ To manually publish image to the Docker Hub execute the following commands:
 ./gradlew jib -Pprod
 ./gradlew jib -Pprod -PimageVersion=latest
 ```
+Make sure you have properly configured Docker Hub credentials.
 
 ## Continuous Integration (optional)
 
