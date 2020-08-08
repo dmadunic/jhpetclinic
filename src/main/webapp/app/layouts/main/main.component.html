@@ -3,6 +3,9 @@
 <div>
     <router-outlet name="navbar"></router-outlet>
 </div>
+<!-- Add ngx-loading-bar at the top ot the display area -->
+<ngx-loading-bar color="#CD67BA" height="4px" ref="http"></ngx-loading-bar>
+<ngx-loading-bar color="#CD67BA" height="4px" [includeSpinner]="false" ref="router"></ngx-loading-bar>
 
 <div class="container-fluid">
     <div class="card jh-card">
