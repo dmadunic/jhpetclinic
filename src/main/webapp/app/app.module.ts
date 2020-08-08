@@ -14,9 +14,9 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-//import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 @NgModule({
   imports: [
@@ -29,7 +29,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     JhpetclinicAppRoutingModule,
     LoadingBarModule,
     LoadingBarHttpClientModule,
-    //LoadingBarRouterModule
+    LoadingBarRouterModule,
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent],
